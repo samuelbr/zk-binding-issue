@@ -1,0 +1,25 @@
+<zk>
+  <window border="normal" title="hello"
+  	apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.github.samuelbr.zk.binding.issue.TestViewModel')"
+  	width="300px" height="400px">
+  	
+  	<grid model="@init(vm.persons)" mold="paging" pageSize="10" emptyMessage="Empty model">
+		<columns>
+			<column label="First name"/>
+			<column label="Last name"/>
+			<column />
+		</columns>
+		<template name="model" >
+			<row>
+			  <cell>${each.firstName}</cell>
+                          <cell>${each.lastName}</cell>
+                          <cell>
+                            <div onClick="@command('deletePerson', item=each)" style="cursor: pointer;">
+                              Delete - ${forEachStatus.index}
+                            </div>
+                          </cell>
+			</row>
+		</template>
+	</grid>
+  </window>
+</zk>
